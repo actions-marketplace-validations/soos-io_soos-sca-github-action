@@ -36,6 +36,7 @@ The `soos-io/soos-sca-github-action` Action has properties which are passed to t
 | export_format           | Write the scan result to this file format. Options: CsafVex, CycloneDx, Sarif, Spdx, SoosIssues, SoosLicenses, SoosPackages, SoosVulnerabilities |   |
 | export_file_type        | Write the scan result to this file type (when used with exportFormat). Options: Csv, Html, Json, Text, Xml                                       |   |
 | files_to_exclude        | Listing of files or patterns patterns to exclude from the search for manifest files. eg: **/req**.txt/, **/requirements.txt |  |
+| file_match_type        | The method to use to locate files for scanning, looking for manifest files and/or files to hash: Manifest, FileHash, ManifestAndFileHash. | Manifest |
 | log_level               | Minimum level to show logs: PASS, IGNORE, INFO, WARN or FAIL. | INFO |
 | on_failure              | Set the On Failure Scan Strategy: fail_the_build, and continue_on_failure | continue_on_failure |
 | output_directory        | Export file destination                                                                                                      |   |

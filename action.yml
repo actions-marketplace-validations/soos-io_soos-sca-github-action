@@ -43,6 +43,9 @@ inputs:
   files_to_exclude:
     description: 'Files to Exclude: Listing of files (relative to ./) to exclude from the search for manifest files. Example - Correct: bin/start/requirements.txt ... Example - Incorrect: ./bin/start/requirements.txt ... Example - Incorrect: /bin/start/requirements.txt'
     required: false
+  file_match_type:
+    description: 'The method to use to locate files for scanning, looking for manifest files and/or files to hash: Manifest, FileHash, ManifestAndFileHash. Default: Manifest'
+    required: false
   log_level:
     description: 'Log level to show: DEBUG, INFO, WARN, ERROR, CRITICAL.'
     required: false
@@ -133,15 +136,14 @@ runs:
         [ -n "${{ inputs.export_format }}" ] && args+="--exportFormat=\"${{ inputs.export_format }}\" "
         [ -n "${{ inputs.export_file_type }}" ] && args+="--exportFileType=\"${{ inputs.export_file_type }}\" "
         [ -n "${{ inputs.files_to_exclude }}" ] && args+="--filesToExclude=\"${{ inputs.files_to_exclude }}\" "
+        [ -n "${{ inputs.file_match_type }}" ] && args+="--fileMatchType=\"${{ inputs.file_match_type }}\" "
         [ -n "${{ inputs.log_level }}" ] && args+="--logLevel=${{ inputs.log_level }} "
         [ -n "${{ inputs.on_failure }}" ] && args+="--onFailure=${{ inputs.on_failure }} "
         [ -n "${{ inputs.operating_environment }}" ] && args+="--operatingEnvironment=${{ inputs.operating_environment }} "
         [ -n "${{ inputs.package_managers }}" ] && args+="--packageManagers=${{ inputs.package_managers }} "
         [ -n "${{ inputs.project_name }}" ] && args+="--projectName=\"${{ inputs.project_name }}\" "
         [ -n "${{ inputs.output_directory }}" ] && args+="--outputDirectory=${{ inputs.output_directory }} "
-        [ -n "${{ inputs.working_directory }}" ] && args+="--workingDirectory=${{ inputs.working_directory }} "        
-
-        [ -n "${{ inputs.target_url }}" ] && args+="${{ inputs.target_url }}"
+        [ -n "${{ inputs.working_directory }}" ] && args+="--workingDirectory=${{ inputs.working_directory }} "
 
         echo "Arguments: $args"
 
