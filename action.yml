@@ -153,7 +153,7 @@ runs:
       shell: bash
       run: |
         [ -d "./soos" ] && rm -rf "./soos"
-        npm install --prefix ./soos @soos-io/soos-sca@${{ inputs.sca_version }}
+        npm install --ignore-scripts --prefix ./soos @soos-io/soos-sca@${{ inputs.sca_version }}
         cd ./soos
         SCRIPT_VERSION=$(npm list @soos-io/soos-sca --depth=0 | grep @soos-io/soos-sca | awk -F'@' '{print $NF}')
         cd ..
